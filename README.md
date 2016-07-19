@@ -1,6 +1,6 @@
 #codeigniter is a good framework
 ***
-###1.*It is small*
+###1.*It is so small but so strong*
 ###2.*It is very simple to use*
 ***
 ####here I will use it to make a small blog
