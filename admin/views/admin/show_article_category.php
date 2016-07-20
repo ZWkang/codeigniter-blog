@@ -20,9 +20,6 @@
        <td>
         <select name="cate_pid">
          <option value="0" selected>最顶级分类</option>
-                <?php foreach($article as $value){ ?>
-                          <option value="<?php echo $value['cate_id'];?>" > <?php echo str_repeat('&nbsp;&nbsp;', $value['lev']),$value['cate_name'];?></option>
-                <?php } ?>
         </select>
        </td>
       </tr>

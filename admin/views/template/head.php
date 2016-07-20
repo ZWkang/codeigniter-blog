@@ -7,6 +7,7 @@
 <link href="<?php echo base_url('views/public/css/public.css');?>" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo base_url('views/public/js/jquery.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('views/public/js/global.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('views/public/js/layer/layer.js');?>"></script>
 </head>
 <body>
 <div id="dcWrap"> <div id="dcHead">

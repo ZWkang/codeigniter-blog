@@ -29,7 +29,15 @@ class Article_model extends CI_Model{
 		$data = $this->db->get($this->table);
 		return $data->result_array();
 	}
-
+	/**
+	*尝试查看是否存在这个东西
+	*传入一个字段跟一个值 查询表中是否存在
+	*/
+	public function GetEff($value,$filed='cate_name'){
+		$this->db->where($filed,$value);
+		$this->db->get($this->table);
+		return $this->db->affected_rows();
+	}
 	/**
 	*返回指定id的一行数组
 	*/
@@ -71,6 +79,20 @@ class Article_model extends CI_Model{
 		return $tree;
 	}
 	/**
+	*给一个cate_pidID然后返回是否有这个id 如果为0的话就返回一个false
+	*
+	*/
+	public function GetCatePid($id=1){
+		$this->db->where('cate_pid',$id);
+		$data = $this->db->get($this->table);
+		if($this->db->affected_rows()){
+			$datas = $data['cate_name'];
+		}else{
+			$datas = false;
+		}
+		return $datas;
+	}
+	/**
 	*取得id下子栏目
 	*/
 	public function GetSon($id){
@@ -78,15 +100,16 @@ class Article_model extends CI_Model{
 		$data = $this->db->get($this->table);
 		return $data->row_array();
 	}
-	public function DelArticle($id=0){
-		$data = array();
-		$this->db->where('cate_id',$id);
-		$data[] = $this->db->delete('news');
-		$where = array('cate_id'=>$id);
-		$datas = array('cate_id'=>0);
-		$data[] = $this->db->query('articlebiao',$data,$where);
-		return array_reverse($data);
-	}
+	//删除分类 just test
+	// public function DelArticle($id=0){
+	// 	$data = array();
+	// 	$this->db->where('cate_id',$id);
+	// 	$data[] = $this->db->delete('news');
+	// 	$where = array('cate_id'=>$id);
+	// 	$datas = array('cate_id'=>0);
+	// 	$data[] = $this->db->query('articlebiao',$data,$where);
+	// 	return array_reverse($data);
+	// }
 	//删除分类
 
 	public function deleteCat($cate_id=0){
@@ -102,7 +125,7 @@ class Article_model extends CI_Model{
 		$this->db->where('cate_id',$cate_id);
 		$this->db->update($this->table,$data);
 	}
-
+	//添加分类
 	public function insert($data){
 		$this->db->insert($this->table,$data);
 		return $this->db->affected_rows();

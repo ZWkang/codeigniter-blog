@@ -27,7 +27,7 @@
         <td align="center"><?php echo $v['cate_id'];?></td>
         <td align="center">
           <a href="<?php echo site_url('ArticleAction/edit/'.$v['cate_id']);?>">编辑</a> | 
-          <a onclick="if(!confirm('确实要删除吗?')){return false;};" href="<?php echo site_url('ArticleAction/delete/'.$v['cate_id']);?>">删除</a></td>
+          <a onclick="layer.confirm('确实要删除吗?',{btn:['删掉吧','算了吧']},function(){location.href='<?php echo site_url('ArticleAction/delete/'.$v['cate_id']);?>'},function(index){layer.close(index);})" href="#">删除</a></td>
       </tr>
       <?php }?>
           </table>
