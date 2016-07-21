@@ -60,15 +60,23 @@ class ArticleAction extends CI_Controller{
 		if(empty($this->uri->segment(3))){
 			redirect('ArticleAction/index');
 		}
-     	$this->form_validation->set_rules('cate_name', '分类名称', 'required|max_length[12]',
+		//这里如果直接url访问update/2这样子类似的话访问
+		//form_validation是不工作的  因为它只给form post 工作啊
+     	$this->form_validation->set_rules('cate_name', '分类名称', 'required',
 	     array(
-			'required'  => '必须填写栏目名称!',
-			'max_length' => '栏目名称不能超过12个字符!'
+			'required'  => '必须填写栏目名称!'
 		  )
 		);
 		if($this->form_validation->run() == FALSE){
 			// exit();
-			$this->formTips(validation_errors(),"ArticleAction/edit/".($this->uri->segment(3)+0));
+			// echo validation_errors();
+			// exit();
+			if(empty(validation_errors())){
+				$this->formTips('你不能这么做啊快返回吧',"ArticleAction/edit/".($this->uri->segment(3)+0));
+			}else{
+				$this->formTips(validation_errors(),"ArticleAction/edit/".($this->uri->segment(3)+0));
+			}
+			
 		} else {
 			$data = array(
 				'cate_id' => ($this->input->post('cate_id')+0),

@@ -10,25 +10,27 @@
 <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
         <h3>              <a href="<?php echo site_url('ArticleAction/index');?>" class="actionBtn">友情链接列表</a>
               <a href="<?php echo site_url('LinksAction/add');?>" class="actionBtn">添加友情链接</a>友情链接列表</h3>
-    <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+    <table style="text-algin:center;"width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
       <tr>
-        <th width="60" align="center">排序</th>
-        <th width="20" aligin="left">友情链接ID</th>
-        <th width="100" align="left">友情链接名称</th>
-        <th align="left">友情链接标题</th>
-        <th align="left">链接地址</th>
+        <th width="20px" align="center">排序</th>
+        <th width="100" aligin="center">友情链接ID</th>
+        <th width="120" align="center">友情链接名称</th>
+        <th align="center">友情链接标题</th>
+        <th align="center">链接地址</th>
         
         <th width="80" align="center">操作</th>
       </tr>
-      <tr >
-        <?php foreach($Links as $v){?>
-        <td align="left"> <a href="(应该是下一个模块)"><?php echo $v['cate_name'];?></a></td>
-        <td><?php echo $v['cate_name'];?></td>
-        <td><?php echo $v['cate_title'];?></td>
-        <td align="center"><?php echo $v['cate_id'];?></td>
+      <?php foreach($Links as $v){?>
+      <tr valign="middle">
+        <td algin="center"><input width='20px' type="text" value="<?php echo $v['link_order']?>"></td>
+        <td align="center"> <a href="(应该是下一个模块)"><?php echo $v['link_id'];?></a></td>
+        <td algin="center "valign="middle"><?php echo $v['link_name'];?></td>
+        <td algin="center" valign="middle"><?php echo $v['link_title'];?></td>
+        <td align="center"><?php echo $v['link_url'];?></td>
+
         <td align="center">
-          <a href="<?php echo site_url('LinksAction/edit/'.$v['cate_id']);?>">编辑</a> | 
-          <a onclick="if(!layer.confirm('确实要删除吗?')){return false;};" href="<?php echo site_url('LinksAction/delete/'.$v['cate_id']);?>">删除</a></td>
+          <a href="<?php echo site_url('LinksAction/edit/'.$v['link_id']);?>">编辑</a> | 
+          <a onclick="if(!layer.confirm('确实要删除吗?')){return false;};" href="<?php echo site_url('LinksAction/delete/'.$v['link_id']);?>">删除</a></td>
       </tr>
       <?php }?>
           </table>

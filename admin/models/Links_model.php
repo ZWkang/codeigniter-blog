@@ -12,6 +12,9 @@ class Links_model extends CI_Model{
 		$data = $this->db->get($this->table);
 		return $data->result_array();
 	}
+	public function GetLink($id=0){
+		$data = $this->db->get($this->table);
+	}
 }
 
 ?>  

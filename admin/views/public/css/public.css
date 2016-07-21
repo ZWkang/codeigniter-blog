@@ -1331,11 +1331,17 @@ select {
 .formTips-mod{
 	font-size: 40px;
 	text-align: center;
-	width: 300px;
 	margin: 0 auto;
 }
 .formTips-mod h1{
-	font-size: 60px;
+	font-size: 50px;
+	color:red;
+}
+.formTips-mod h3{
+	font-size: 40px;
+}
+.formTips-mod p a{
+	color:red;
 }
 /* 公共底部
 ----------------------------------------------- */
