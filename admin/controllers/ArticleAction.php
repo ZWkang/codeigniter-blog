@@ -177,7 +177,7 @@ class ArticleAction extends CI_Controller{
 			return true;
 		}
 		$query = $this->Article_model->insert($data);
-		if($query){
+		if($query>0){
 			$datas = array(
 				'message'=>'添加成功!!!!!',
 				'id'=>'',

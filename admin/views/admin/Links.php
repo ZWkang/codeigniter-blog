@@ -9,7 +9,7 @@
 </div>   
 <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
         <h3>              <a href="<?php echo site_url('ArticleAction/index');?>" class="actionBtn">友情链接列表</a>
-              <a href="<?php echo site_url('LinksAction/add');?>" class="actionBtn">添加友情链接</a>友情链接列表</h3>
+              <a href="<?php echo site_url('LinksAction/addShow');?>" class="actionBtn">添加友情链接</a>友情链接列表</h3>
     <table style="text-algin:center;"width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
       <tr>
         <th width="20px" align="center">排序</th>
@@ -29,8 +29,11 @@
         <td align="center"><?php echo $v['link_url'];?></td>
 
         <td align="center">
-          <a href="<?php echo site_url('LinksAction/edit/'.$v['link_id']);?>">编辑</a> | 
-          <a onclick="if(!layer.confirm('确实要删除吗?')){return false;};" href="<?php echo site_url('LinksAction/delete/'.$v['link_id']);?>">删除</a></td>
+          <a href="<?php echo site_url('LinksAction/editShow/'.$v['link_id']);?>">编辑</a> | 
+          <a onclick="layer.confirm('确实要删除吗?',
+          {btn:['删掉吧','算了吧']},
+          function(){location.href='<?php echo site_url('LinksAction/LinksDel/'.$v['link_id']);?>'},
+          function(index){layer.close(index);})" href="#">删除</a></td>
       </tr>
       <?php }?>
           </table>
