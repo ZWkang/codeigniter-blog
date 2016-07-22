@@ -1,0 +1,55 @@
+控制器文件名 类名大写
+index()方法默认加载
+
+url传递参数
+index($data1,$data2)
+/index/2/3
+$data1=1  $data2=2
+
+$route['default_controller']  默认加载的控制器
+
+重写映射方法
+function _remap($method){
+    if($method == 'xxxxx'){
+$this->$method;
+	}
+	else{
+$this->$default_method;}
+}
+
+_output  就像是析构函数一样
+在这个类执行结束之后执行
+
+private与protected这两个可以保证方法不被url调用
+
+controller一定要初始化parent的构造方法  避免覆盖
+
+
+
+is_php()
+判断当前php是否高于提供的版本
+eg is_php('7.0')  return boolean
+
+is_writeable()
+file name
+return boolean
+  判断是否可写
+
+
+$this->load->view('')加载视图
+往视图加载数据可以使用数组或者对象(使用对象时候  对象会转化成数组)
+
+$this->load->view('',$data,Boolean)加载视图  
+第二个参数是传数据    第三个是true的话就以字符串输出  将$view返回赋给一个变量
+这就是类似于curl时候的  是否要return的情况
+eg :$string = $this->load->view('',$data,true); echo $string;
+
+
+model专门用来跟数据库打交道的
+application/models  下面创建你需要完成功能的一个model 类中有对应需要的方法
+
+加载model  in  controller $this->load->model('xxxx')
+就能使用这个model 里面的方法了
+$this->xxxx->funtion_name();
+
+model自动加载
