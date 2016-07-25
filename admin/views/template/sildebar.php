@@ -9,7 +9,7 @@
   <li><a href="page.html"><i class="page"></i><em>单页面管理</em></a></li>
   </ul>
   <ul>
-  <li><a href="article_category.php"><i class="articleCat"></i><em>文章分类</em></a></li>
+  <li><a href="<?php echo site_url('ArticleAction/index');?>"><i class="articleCat"></i><em>文章分类</em></a></li>
   <li><a href="article.html"><i class="article"></i><em>文章列表</em></a></li>
   <li><a href="article_add.html"><i class="article"></i><em>文章管理</em></a></li>
  </ul>
@@ -18,7 +18,7 @@
     <li><a href="media_add.html"><i></i><em>上传媒体</em></a></li>
 </ul>
  <ul>
-  <li><a href="Link.html"><i class="Link"></i><em>友情链接管理</em></a></li>
+  <li><a href="<?php echo site_url('LinksAction/index');?>"><i class="Link"></i><em>友情链接管理</em></a></li>
   <li><a href="Tag.html"><i class="Tag"></i><em>博客标签管理</em></a></li>
 </ul>
 

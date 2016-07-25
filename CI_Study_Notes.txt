@@ -53,3 +53,84 @@ application/models  下面创建你需要完成功能的一个model 类中有对应需要的方法
 $this->xxxx->funtion_name();
 
 model自动加载
+application/config/autoload.php 文件库里面    并将该模型添加到autoload数组中
+
+连接数据库
+标准数据库连接:
+自动连接:
+application/config/autoload.php添加数组database
+$autoload['libraries'] = array('database');
+
+手动连接
+$this->load->database();  让当前整个类都可以使用数据库
+第一个参数没有指定的话  默认使用默认配置
+1、数据库连接值，用数组或DSN字符串传递；
+2、TRUE/FALSE (boolean) - 是否返回连接ID（参考“连接多数据库”）；
+3、TRUE/FALSE (boolean) - 是否启用查询构造器类，默认为 TRUE 。
+
+$this->load->database('group_name');配置信息里面选定一个特定的组  group_name
+
+也可以传递一个数组$this->load->database($config);
+
+$DB1 = $this->load->database('group_one', TRUE);
+$DB2 = $this->load->database('group_two', TRUE);连接多数据库
+多连接  再要操作的时候   操作对象应该变成他们自身
+eg  $DB1->result()  $DB2->query()
+
+$this->db->db_select($database2_name);可以这样选择变换数据库 db_select!!
+
+$this->db->reconnect();避免数据库超时断开  给数据库发送ping命令心跳
+
+$this->db->close();显示断开数据库
+
+
+load->model('xx','',boolean)
+第三个参数设置要不要自动连接数据库  会使用数据库配置文件的配置
+也可以第三个参数设置一个配置数组   config的datebase里面的样子的
+
+
+辅助函数
+每个辅助函数文件都是某一类 函数的集合
+辅助函数位于 system/helpers 或者 application/helpers 。CodeIgniter 首先会查找 application/helpers 目录，如果该目录不存在， 或者你加载的辅助函数没有在该目录下找到，CodeIgniter 就会去 system/helpers/ 目录查找。
+
+现在应用自动找。应用找不到的话就到你加载的地方找 再找不到就在system里面找
+辅助函数加载没有返回值。。23333333
+
+CI加载多个的时候  貌似都是可以用array传递的
+
+自动加载
+application/config/autoload.php  写上配置信息就好了
+
+扩展辅助函数
+application/helpers/  新建一个文件
+与已存在的辅助函数文件名一样 加上 MY_ 前缀
+扩展并不合适     应该说成是一种优化    因为是过程化的变成    优化比较好
+你可以在新建的文件里面   进行重写 或者添加函数
+
+用于扩展辅助函数的文件名前缀和扩展类库和核心类是一样的。要自定义这个前缀，你可以打开 application/config/config.php 文件然后找到这项:
+$config['subclass_prefix'] = 'MY_';
+
+原始CI类库都是CI_打头的
+
+
+CI类库
+$this->load->library('class_name');
+加载类库
+也可以通过加载多个类库
+$this->load->library(array);
+
+"类库" 这个词的时候，通常我们指的是位于 libraries 这个目录下的那些类
+在libraries创建类库 并跟全局类库有区别
+
+另外，如果你希望在现有的类库中添加某些额外功能，CodeIgniter 允许你扩展原生的类， 或者你甚至可以在你的 application/libraries 目录下放置一个和原生的类库同名的文件 完全替代它。
+
+你可以创建一个全新的类库，
+你可以扩展原生的类库，
+你可以替换掉原生的类库。
+	除了数据库类不能被扩展或被你的类替换外，其他的类都可以。
+
+存放位置
+你的类库文件应该放置在 application/libraries 目录下，当你初始化类时，CodeIgniter 会在这个目录下寻找这些类。
+
+命名一致
+

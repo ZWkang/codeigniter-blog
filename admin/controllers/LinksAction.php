@@ -29,12 +29,11 @@ class LinksAction extends CI_Controller{
 		// print_r($data);
 		$this->load->view('admin/edit_links',$data);
 	}
+	//添加栏目展示
 	function addShow(){
 		$this->load->view('admin/add_link');
 	}
-	function indexShow(){
-		
-	}
+
 	//处理修改链接
 	function editUpdate(){
 		$id=$this->uri->segment(3)+0;

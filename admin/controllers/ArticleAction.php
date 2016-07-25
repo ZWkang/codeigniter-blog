@@ -1,6 +1,6 @@
 <?php
 //文章分类操作
-
+// This is Article category
 class ArticleAction extends CI_Controller{
 	public $urls = 'ArticleAction/edit';
 	public function __construct(){
@@ -147,6 +147,7 @@ class ArticleAction extends CI_Controller{
 			);
 		$this->load->view('admin/add_article_category',$data);
 	}
+	//添加栏目
 	public function insert(){
 		$this->form_validation->set_rules('cate_name', '分类名称', 'trim|required|max_length[12]',
 	     array(
@@ -197,6 +198,7 @@ class ArticleAction extends CI_Controller{
 			//添加失败跳转添加界面
 		}
 	}
+	//删除栏目分类
 	public function delete($cate_pid){
 		$son = $this->Article_model->GetSon($cate_pid);
 		if(!empty($son)){
@@ -227,15 +229,18 @@ class ArticleAction extends CI_Controller{
 			return true;			
 		}
 	}
+	//校验分类名是否可用
+	//做接口给添加分类使用的
 	public function CheckCateName(){
 		if(!$this->Article_model->GetEff($this->input->post('cate_name'))){
-			$data=['status'=>0,'msg'=>'该用户名可用'];
+			$data=['status'=>0,'msg'=>'该分类名字可用'];
 		}else{
-			$data=['status'=>1,'msg'=>'该用户名不可用'];
+			$data=['status'=>1,'msg'=>'该分类名字不可用'];
 		}
 		echo json_encode($data);
 		// return $data;
 	}
+	//测试
 	public function test(){
 		if($this->Article_model->GetEff('腾讯体育')>0){
 			echo 'hahaha';
@@ -243,6 +248,7 @@ class ArticleAction extends CI_Controller{
 			echo 'xxxx';
 		}
 	}
+	//展示一个分类
 	public function Show_One_Category(){
 		if(empty($this->uri->segment(3))){
 			redirect('ArticleAction/index');
@@ -254,6 +260,7 @@ class ArticleAction extends CI_Controller{
 		);
 		
 	}
+	//表单错误提示
 	public  function formTips($tips="",$url="/"){
 		$data = array(
 		        'Tips'=> $tips,
