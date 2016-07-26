@@ -6,22 +6,45 @@ class ArticleAction extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('Article_model');
+		$this->load->model('Article_category_model');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		// $this->load->model('Article_Model');
+		// $this->load->model('Article_category_model');
 	}
 	/**
 	*主页显示列表
 	*/
 	public function index(){
+		//后台设置后缀为空，否则分页出错
+		// $this->config->set_item('url_suffix', '');
+		//载入分页类
+		$this->load->library('pagination');
+		$perPage = 3;
+		//配置项设置
+		$config['base_url'] = site_url('admin/article/index');
+		$config['total_rows'] = $this->db->count_all_results('article');
+		$config['per_page'] = $perPage;
+		$config['uri_segment'] 
+		$config['last_link'] = '最后一页';= 4;
+		$config['first_link'] = '第一页';
+		$config['prev_link'] = '上一页';
+		$config['next_link'] = '下一页';
 
-		$data=$this->Article_model->GetArticle();
+		$this->pagination->initialize($config);
+
+		$data['links'] = $this->pagination->create_links();
+		print_r($data);exit();
+		$offset = $this->uri->segment(4);
+		$this->db->limit($perPage, $offset);
+
+		$data=$this->Article_category_model->GetArticle();
 		// print_r($data);
-		// print_r($this->Article_model->GetCatTree($data));
+		// print_r($this->Article_category_model->GetCatTree($data));
 		$data=array(
-	        'categoryes'=>$this->Article_model->GetCatTree($data)
+	        'categoryes'=>$this->Article_category_model->GetCatTree($data),
+
 	          );
+
 		$this->load->view('admin/article_category',$data);
 	}
 	/**
@@ -29,8 +52,8 @@ class ArticleAction extends CI_Controller{
 	*/
 	public function edit(){
 		$data=array(
-			'categorye'=>$this->Article_model->GetOneArticle($this->uri->segment(3)),
-			'article'=>$this->Article_model->GetCatTree($this->Article_model->GetArticle())
+			'categorye'=>$this->Article_category_model->GetOneArticle($this->uri->segment(3)),
+			'article'=>$this->Article_category_model->GetCatTree($this->Article_category_model->GetArticle())
 		);
 		$this->load->view('admin/edit_article_category',$data);
 	}
@@ -39,7 +62,7 @@ class ArticleAction extends CI_Controller{
 	*返回一个bool值
 	*/
 	public function GetBool($cate_id,$cate_pid,$flag){
-		$trees = $this->Article_model->GetTree($cate_pid);
+		$trees = $this->Article_category_model->GetTree($cate_pid);
 		foreach($trees as $value){
 			if($value['cate_id']==$cate_id){
 				$flag = false;
@@ -101,7 +124,7 @@ class ArticleAction extends CI_Controller{
 		
 		//出错跳转出错页面
 		$flag=true;
-		// $trees = $this->Article_model->GetTree($data['cate_pid']);
+		// $trees = $this->Article_category_model->GetTree($data['cate_pid']);
 		// foreach($trees as $value){
 		// 	if($value['cate_id']==$data['cate_id']){
 		// 		$flag = false;
@@ -118,7 +141,7 @@ class ArticleAction extends CI_Controller{
 			$this->load->view('template/error',$datas);
 			return true;
 		}
-		$query = $this->Article_model->update($data,$id);
+		$query = $this->Article_category_model->update($data,$id);
 		if(!$query){
 			$datas = array(
 				'message'=>'修改成功!!',
@@ -143,12 +166,18 @@ class ArticleAction extends CI_Controller{
 	// */
 	public function add(){
 		$data=array(
-				'article'=>$this->Article_model->GetCatTree($this->Article_model->GetArticle())
+				'article'=>$this->Article_category_model->GetCatTree($this->Article_category_model->GetArticle())
 			);
 		$this->load->view('admin/add_article_category',$data);
 	}
 	//添加栏目
 	public function insert(){
+		$this->form_validation->set_rules('hehe', '分类名称', 'required',
+	     array(
+			'required'  => '必须填写栏目名称!'
+		  )
+		);		
+		var_dump($this->form_validation->run());exit();
 		$this->form_validation->set_rules('cate_name', '分类名称', 'trim|required|max_length[12]',
 	     array(
 			'required'  => '必须填写栏目名称!',
@@ -167,7 +196,7 @@ class ArticleAction extends CI_Controller{
 			'cate_pid' => $this->input->post('cate_pid')
 		);
 		}
-		$effect = $this->Article_model->GetEff($data['cate_name'],'cate_name');
+		$effect = $this->Article_category_model->GetEff($data['cate_name'],'cate_name');
 		if($effect>0||$data['cate_name']==''){
 			$datas = array(
 				'message'=>'添加失败,说了用户名重复',
@@ -177,7 +206,7 @@ class ArticleAction extends CI_Controller{
 			$this->load->view('template/error',$datas);
 			return true;
 		}
-		$query = $this->Article_model->insert($data);
+		$query = $this->Article_category_model->insert($data);
 		if($query>0){
 			$datas = array(
 				'message'=>'添加成功!!!!!',
@@ -200,7 +229,7 @@ class ArticleAction extends CI_Controller{
 	}
 	//删除栏目分类
 	public function delete($cate_pid){
-		$son = $this->Article_model->GetSon($cate_pid);
+		$son = $this->Article_category_model->GetSon($cate_pid);
 		if(!empty($son)){
 			$datas = array(
 				'message'=>'有子栏目不允许删除!!',
@@ -210,7 +239,7 @@ class ArticleAction extends CI_Controller{
 			$this->load->view('template/error',$datas);
 			return true;
 		}
-		$query = $this->Article_model->deleteCat($cate_pid);
+		$query = $this->Article_category_model->deleteCat($cate_pid);
 		if($query){
 			$datas = array(
 				'message'=>'神秘力量删除成功!!',
@@ -232,7 +261,7 @@ class ArticleAction extends CI_Controller{
 	//校验分类名是否可用
 	//做接口给添加分类使用的
 	public function CheckCateName(){
-		if(!$this->Article_model->GetEff($this->input->post('cate_name'))){
+		if(!$this->Article_category_model->GetEff($this->input->post('cate_name'))){
 			$data=['status'=>0,'msg'=>'该分类名字可用'];
 		}else{
 			$data=['status'=>1,'msg'=>'该分类名字不可用'];
@@ -242,7 +271,7 @@ class ArticleAction extends CI_Controller{
 	}
 	//测试
 	public function test(){
-		if($this->Article_model->GetEff('腾讯体育')>0){
+		if($this->Article_category_model->GetEff('腾讯体育')>0){
 			echo 'hahaha';
 		}else{
 			echo 'xxxx';
@@ -253,14 +282,31 @@ class ArticleAction extends CI_Controller{
 		if(empty($this->uri->segment(3))){
 			redirect('ArticleAction/index');
 		}
-		$data = $this->Article_model->GetOneArticle($this->uri->segment(3));
-		$this->Article_model->GetCatePid($data['cate_pid']);
+		$data = $this->Article_category_model->GetOneOfArticle($this->uri->segment(3));
+
+		$result = $this->Article_category_model->GetCatePid($data['cate_pid']);
+
+		if(empty($result)){
+			$data['pid_name']='无';
+		}else{
+			$data['pid_name']=$result;
+		}
+		if(empty($data['cate_keywords'])){
+			$data['cate_keywords'] ='无';
+		}
+		if(empty($data['cate_description'])){
+			$data['cate_description'] ='无';
+		}
+		if(empty($data['cate_title'])){
+			$data['cate_title'] ='无';
+		}
 		$datas = array(
-			'OneCategory'=>$data['cate_name']
+			'OneCategory'=>$data
 		);
+		$this->load->view('admin/show_article_category',$datas);
 		
 	}
-	//表单错误提示
+	//表单错误提示页面
 	public  function formTips($tips="",$url="/"){
 		$data = array(
 		        'Tips'=> $tips,

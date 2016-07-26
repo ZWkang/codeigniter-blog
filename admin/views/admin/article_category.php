@@ -21,7 +21,7 @@
      
       <?php foreach($categoryes as $v){?>
       <tr >
-        <td align="left"style="padding-left:<?php echo $v['lev']*10;?>px"> <a href="(应该是下一个模块)"><?php echo $v['cate_name'];?></a></td>
+        <td align="left"style="padding-left:<?php echo $v['lev']*10;?>px"> <a href="<?php echo site_url('ArticleAction/Show_One_Category/').'/'.$v['cate_id'];?>"><?php echo $v['cate_name'];?></a></td>
         <td><?php echo $v['cate_name'];?></td>
         <td><?php echo $v['cate_title'];?></td>
         <td align="center"><?php echo $v['cate_id'];?></td>
