@@ -849,3 +849,19 @@ if ( ! function_exists('function_usable'))
 		return FALSE;
 	}
 }
+
+
+/**
+ *打印常量
+ */
+function print_const(){
+	$consts = get_defined_constants(TRUE);
+	print_r($consts['user']);
+}
+/**
+ * 错误提示
+ */
+function error($_info){
+	echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
+	exit();
+}

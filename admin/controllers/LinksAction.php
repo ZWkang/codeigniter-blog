@@ -1,5 +1,5 @@
 <?php
-class LinksAction extends CI_Controller{
+class LinksAction extends MY_Controller{
 	public $urls = 'LinksAction/editShow';
 	//初始化加载
 	function __construct(){
@@ -13,7 +13,8 @@ class LinksAction extends CI_Controller{
 	function index(){
 		$result = $this->Links_model->indexShow();
 		$data = array(
-			'Links' => $result
+			'Links' => $result,
+			
 			);
 		$this->load->view('admin/Links',$data);
 		// echo var_dump($string);
