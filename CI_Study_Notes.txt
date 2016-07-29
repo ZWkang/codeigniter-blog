@@ -1,6 +1,8 @@
 控制器文件名 类名大写
 index()方法默认加载
 
+ CodeIgniter 类  只在控制器、模型或视图中直接使用
+
 url传递参数
 index($data1,$data2)
 /index/2/3
@@ -133,12 +135,88 @@ $this->load->library(array);
 你的类库文件应该放置在 application/libraries 目录下，当你初始化类时，CodeIgniter 会在这个目录下寻找这些类。
 
 命名一致
-
 加载外部类库 
 在libraries  放置   大写开头 .php结尾
 
-打印常量  在system/commond.php  里面自定义方法
+在控制器内可以任意实例化你自定义的类库
+$this->load->library('someclass');
+$this->someclass->调用想要的方法
+
+初始化类的时候  
+第二个参数可以用于传参
+$this->load->library('someclass',array(xxx,xxxx));
+
+你也可以将参数保存在配置文件中来传递，只需简单的创建一个和类文件同名的配置文件， 并保存到你的 application/config/ 目录下。要注意的是，如果你使用了上面介绍的方法 动态的传递参数，配置文件将不可用。
+
+
+在自定义的类库内使用 CodeIgniter 的原生资源
+可以使用get_instance()方法
+eg : $CI =& get_instance();
+此处的引用传递确保了使用的是原生的CI超级对象  而不是副本
+然后再调用的时候 $CI->load->view()这样来使用CI类了
+
+扩展原生类库
+新类名和文件名必须以 MY_ 为前缀  这个设置在config文件里面可以修改
+$config['subclass_prefix'] = 'MY_';
+
+
+如果你需要在你的类中使用构造函数，确保你调用了父类的构造函数:
+__construct($config)
+parent::__construct($config);
+
+CI 驱动器
+驱动器是一种特殊类型的类库
+它有一个父类和任意多个子类。子类可以访问父类， 但不能访问兄弟类
+驱动器位于 system/libraries/ 目录  每一个驱动器有自己独立的目录 
+目录名字跟驱动器父类类名一致
+在该目录下还有一个子目录，命名为 drivers，用于存放 所有子类的文件。
+
+初始化
+eg:$this->load->driver('class_name');
+$this->class_name->some_method();
+
+子类不用再初始化直接调用即可
+$this->class_name->childone->some_method();
+$this->class_name->childtwo->some_method();
+
+/application/libraries/Driver_name
+	Driver_name.php
+	drivers
+		Driver_name_subclass_1.php
+		Driver_name_subclass_2.php
+		Driver_name_subclass_3.php
+
+首字母大写 ucfirst()的格式
+
+子驱动器里 无法访问主驱动器中的属性或方法。
+
+打印常量  
+在system/commond.php  里面自定义方法
 function print_const(){
 	$consts = get_defined_constants(TRUE);
 	print_r($consts['user']);
 }
+
+$this->load->library('session')
+$this->session->set_userdata(array());
+设置一个session数组  
+读取
+$his->session->userdata('xxx');
+读取
+$this->session->sess_destory()
+
+redirect()定向跳转
+好像第二个参数还可以设置返回的状态码
+strtoupper()  将字符串小写转换为大写
+
+extract($arr)将一个数组键值对分离赋值
+
+百度ueditor结合php简单使用
+
+首先导入js文件 
+在UEDITOR_HOME_URL设置ueditor地址
+再设置宽高 然后赋给你想要的地方 UE.getEditor('content');
+设置上传图片的地址   设置config.json文件里面的path地址   地址是相对于服务器地址的也就是www地址的
+
+
+
