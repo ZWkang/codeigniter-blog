@@ -15,6 +15,16 @@ class Admin_model extends CI_Model{
 		$data = $this->db->get_where('blog_user',array('user_name'=>$username))->result_array();
 		return $data;
 	}
+
+	public function GetrGroup($id){
+		$id = $id+0;
+		$this->db->select('group_pre');
+		return $this->db->get_where('blog_group',array('gid'=>$id))->row_array();
+	}
+
+	/**
+	 * admin表联合group表查
+	 */
 }
 
 ?>

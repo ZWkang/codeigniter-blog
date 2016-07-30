@@ -8,30 +8,30 @@ class ArticleDoAction extends CI_Controller{
 		$this->load->library('form_validation');
 	}
 	public function index(){
-		$this->config->set_item('url_suffix', '');
-		//载入分页类
-		$this->load->library('pagination');
-		$perPage = 5;
-		//配置项设置
-		$config['base_url'] = site_url('ArticleDoAction/index');
-		$config['total_rows'] = $this->db->count_all_results('blog_article');
-		// echo $config['total_rows'] ;exit();
-		$config['per_page'] = $perPage;
-		$config['use_page_numbers'] = TRUE;
-		$config['uri_segment'] = 2;
-		$config['enable_query_strings']=TRUE;
-		$config['page_query_string']=TRUE;
-		$config['last_link'] = '最后一页';
-		$config['first_link'] = '第一页';
-		$config['prev_link'] = '上一页';
-		$config['next_link'] = '下一页';
+		// $this->config->set_item('url_suffix', '');
+		// //载入分页类
+		// $this->load->library('pagination');
+		// $perPage = 5;
+		// //配置项设置
+		// $config['base_url'] = site_url('ArticleDoAction/index');
+		// $config['total_rows'] = $this->db->count_all_results('blog_article');
+		// // echo $config['total_rows'] ;exit();
+		// // $config['per_page'] = $perPage;
+		// $config['use_page_numbers'] = TRUE;
+		// $config['uri_segment'] = 4;
+		// // $config['enable_query_strings']=TRUE;
+		// // $config['page_query_string']=TRUE;
+		// $config['last_link'] = '最后一页';
+		// $config['first_link'] = '第一页';
+		// $config['prev_link'] = '上一页';
+		// $config['next_link'] = '下一页';
 
-		$this->pagination->initialize($config);
+		// $this->pagination->initialize($config);
 
 		
 		// print_r($data);die;
-		$offset = $this->uri->segment(4);
-		$this->db->limit($perPage, $offset);
+		// $offset = $this->uri->segment(4);
+		// $this->db->limit($perPage, $offset);
 
 		$articles = $this->Article_model->getTable();
 

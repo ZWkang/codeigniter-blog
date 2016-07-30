@@ -48,8 +48,6 @@ class Login extends CI_Controller{
 			);
 		$this->load->library('code',$config);
 		$this->code->show();
-
-
 	}
 	public function login_in(){
 		$code = $this->input->post('code');
@@ -68,13 +66,22 @@ class Login extends CI_Controller{
 		if(!$Userdata || $passwd!=$Userdata[0]['user_pass']){
 			error('用户名或者密码不正确');
 		}
+		if(empty($Userdata[0]['user_group'])){
+			error('有误,失败');
+		}
+		// echo $Userdata[0]['user_group'];exit();
+		$result = $this->admin->GetrGroup($Userdata[0]['user_group']);
+		print_r($result);exit();
+		$premission = explode(',', $Userdata[0]['premission']);
 		$sessionData=array(
 			'username'=>$username,
+			'premission'=>$premission,
 			'uid' => $Userdata[0]['user_id'],
 			'logintime' => time()
 			);
 		$this->session->set_userdata($sessionData);
 		$data = $this->session->userdata();
+		print_r($data);exit();
 		redirect('LinksAction/index');
 	}
 	/**

@@ -3,7 +3,7 @@
 <?php $this->load->view('template/sildebar');?>
  <div id="dcMain">
    <!-- 当前位置 -->
-<div id="urHere">DouPHP 管理中心<b>></b><strong>修改</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+<div id="urHere">Kang BLOG后台 管理中心<b>></b><strong>修改</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
             <h3>        
               <a href="<?php echo site_url('ArticleAction/index');?>" class="actionBtn">文章分类</a>
               <a href="<?php echo site_url('ArticleAction/add');?>" class="actionBtn">添加分类</a>修改分类</h3>

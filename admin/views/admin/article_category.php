@@ -4,7 +4,7 @@
    <!-- 当前位置 -->
 <div id="dcMain">
    <!-- 当前位置 -->
-<div id="urHere">DouPHP 管理中心<b>></b>
+<div id="urHere">Kang BLOG后台 管理中心<b>></b>
   <strong>文章分类</strong> 
 </div>   
 <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">

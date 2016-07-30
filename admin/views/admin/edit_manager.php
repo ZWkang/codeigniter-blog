@@ -4,7 +4,7 @@
 
  <div id="dcMain">
    <!-- 当前位置 -->
-<div id="urHere">DouPHP 管理中心<b>></b><strong>网站管理员</strong> </div>   
+<div id="urHere">Kang BLOG后台 管理中心<b>></b><strong>网站管理员</strong> </div>   
 <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
         <h3><a href="manager.html" class="actionBtn">返回列表</a>网站管理员
         </h3>

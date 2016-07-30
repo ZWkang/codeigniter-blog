@@ -2,7 +2,7 @@
 <?php $this->load->view('template/head');?>
 <?php $this->load->view('template/sildebar');?>
  <div id="dcMain"> <!-- 当前位置 -->
-<div id="urHere">Kang blog  管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
+<div id="urHere">Kang BLOG后台  管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
       <div class="warning">您还没有删除 install 文件夹，出于安全的考虑，我们建议您删除 install 文件夹。</div>
     
    <div id="douApi"></div>

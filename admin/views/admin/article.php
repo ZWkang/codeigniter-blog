@@ -3,8 +3,8 @@
 <?php $this->load->view('template/sildebar');?>
  <div id="dcMain">
    <!-- 当前位置 -->
-<div id="urHere">DouPHP 管理中心<b>></b><strong>文章列表</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="addarticle.html?rec=add" class="actionBtn add">添加文章</a>文章列表</h3>
+<div id="urHere">Kang BLOG后台 管理中心<b>></b><strong>文章列表</strong> </div>   <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="<?php echo site_url('ArticleDoAction/AddArticle')?>" class="actionBtn add">添加文章</a>文章列表</h3>
     <div class="filter">
 <!--     <form action="article.php" method="post">
      <select name="cat_id">
@@ -38,7 +38,7 @@
       <td align="center"><a href="article.php?cat_id=1">公司动态</a></td>
       <td align="center"><?php echo $value['art_time'];?></td>
       <td align="center">
-              <a href="<?php site_url('ArticleDoAction/EditArticle').'/'.$value['art_id'];?>">编辑</a> | <a href="#" onclick="layer.confirm('确实要删除吗?',{btn:['删掉吧','算了吧']},function(){location.href='<?php echo site_url('ArticleDoAction/DelArticle/'.$value['cate_id']);?>'},function(index){layer.close(index);})" id="">删除</a>
+              <a href="<?php echo site_url('ArticleDoAction/show').'/'.$value['art_id'];?>">编辑</a> | <a href="#" onclick="layer.confirm('确实要删除吗?',{btn:['删掉吧','算了吧']},function(){location.href='<?php echo site_url('ArticleDoAction/DelArticle/'.$value['art_id']);?>'},function(index){layer.close(index);})" id="">删除</a>
              </td>
      </tr>
       <?php } ?>
