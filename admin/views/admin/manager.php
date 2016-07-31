@@ -8,11 +8,11 @@
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
      <tr>
       <th width="30" align="center">编号</th>
-      <th align="left">管理员名称</th>
+      <th align="center">管理员名称</th>
       <th align="center">E-mail地址</th>
       <th align="center">添加时间</th>
       <th align="center">最后登录时间</th>
-      <th align="center">拥有权限标识id</th>
+      <th align="center">所属权限组</th>
       <th align="center">登录IP</th>
       <th align="center">操作</th>
      </tr>
@@ -20,13 +20,13 @@
 
       <tr>
       <td align="center"><?php echo $value['user_id'];?></td>
-      <td><?php echo $value['user_name'];?></td>
+      <td align="center"><a href="<?php echo site_url('ManagerAction/ShowOneManager').'/'.$value['user_id']?>"><?php echo $value['user_name'];?></a></td>
       <td align="center"><?php echo $value['user_email'];?></td>
-      <td align="center">2016-02-25</td>
-      <td align="center">2016-02-26 20:53:17</td>
-      <td align="center"><?php echo $value['premission'];?></td>
-      <td align="center">127.0.0.1</td>
-      <td align="center"><a href="manageraction.html?rec=edit&id=1">编辑</a> | <a href="manager.html?rec=del&id=1">删除</a></td>
+      <td align="center"><?php echo $value['user_addtime'];?></td>
+      <td align="center"><?php echo $value['user_lastlogin'];?></td>
+      <td align="center"><a title="<?php echo $value['group_content'];?>"><?php echo $value['group_name'];?></a></td>
+      <td align="center"><?php echo $value['user_ip'];?></td>
+      <td align="center"><a href="<?php echo site_url('ManagerAction/EditManagerShow').'/'.$value['user_id']?>">编辑</a> | <a href="<?php echo site_url('ManagerAction/DelManager').'/'.$value['user_id']?>">删除</a></td>
       
      </tr>
      <?php } ?>

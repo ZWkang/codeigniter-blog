@@ -4,47 +4,40 @@
 
  <div id="dcMain">
    <!-- 当前位置 -->
-<div id="urHere">DouPHP 管理中心<b>></b><strong>网站管理员</strong> </div>   
+<div id="urHere">Kang BLOG后台 管理中心<b>></b><strong>网站管理员</strong> </div>   
 <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-        <h3><a href="<?php echo site_url('ManagerAction/index');?>" class="actionBtn">返回列表</a>网站管理员
+        <h3><a href="manager.html" class="actionBtn">返回列表</a>网站管理员
         </h3>
-        <form action="manager.php?rec=insert" method="post">
+        <form action="<?php echo site_url('ManagerAction/AddDoManager');?>" method="post">
             <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
                 <tr>
             <td width="100" align="right">管理员名称</td>
             <td>
-            <input type="text" name="user_name" size="40" class="inpMain" />
+            <input type="text" name="user_name" size="40" class="inpMain" value=""/>
            </td>
           </tr>
           <tr>
            <td width="100" align="right">E-mail地址</td>
            <td>
-            <input type="text" name="email" size="40" class="inpMain" />
+            <input type="text" name="user_email" size="40" class="inpMain" value=""/>
            </td>
           </tr>
           <tr>
-           <td align="right">当前密码</td>
+           <td align="right">密码设置</td>
            <td>
-            <input type="password" name="password" size="40" class="inpMain" />
+            <input type="password" name="user_pass" size="40" class="inpMain" id="old_pass"/>
+            <h5 id="Tips" style="display:inline;" color:"red"></h5>
            </td>
           </tr>
           <tr>
-           <td align="right">修改密码</td>
-           <td>
-            <input type="password" name="password_confirm" size="40" class="inpMain" />
-           </td>
-          </tr>
-          <tr>
-         <td align="right">权限设定</td>
+         <td align="right">所属权限组设定</td>
          <td>
-          <label for="checkbox"><input name="premission" type="checkbox" value="1">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="2">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="3">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="4">登录后台</label>
-          <br/>
-          <label for="checkbox"><input name="premission" type="checkbox" value="5">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="6">登录后台</label>
-
+                <select name="user_group" id="user_group">
+                  <?php foreach ($groups as $value){?>
+                     <option value="<?php echo $value['gid']?>"><?php echo $value['group_name'];?></option>
+                  <?php } ?>
+                </select>
+    
          </td>
       </tr>
       <tr>
@@ -58,4 +51,31 @@
     </form>
                    </div>
  </div>
+ <script type="text/javascript">
+      $("#old_pass").change(function(){
+        var statid = <?php echo $manager['user_id']!=''?$manager['user_id']:0;?>;
+        if($("#old_pass").val()!=''&&statid){
+                var CateUrl="<?php echo site_url('ManagerAction/CheckPass');?>";
+                var values = $("#old_pass").val();
+                $.ajax({
+                  type:"POST",
+                  url:CateUrl,
+                  data:{id:statid,pass:values},
+                  dataType:"json",
+                  async:true,
+                  success:function(data){
+                    $("#Tips").text(data.msg);
+                    console.log(data);
+                    // console.log(data.msg);
+                  },
+                  error:function(datas){
+                    $("#Tips").text(datas.msg);
+                  }
+                })
+                }
+        else{
+          alert('error');history.back(-1);
+        }
+      })
+ </script>
 <?php $this->load->view('template/footer');?>

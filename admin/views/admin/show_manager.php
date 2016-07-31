@@ -29,15 +29,9 @@
            </td>
           </tr>
           <tr>
-         <td align="right">当前权限</td>
-         <td>
-
-          <label for="checkbox"><input name="premission" type="checkbox" value="1">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="2">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="3">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="4">登录后台</label>
-          <br/>
-
+         <td align="right">当前所属权限组</td>
+         <td title="<?php echo $group['group_content']?>">
+              <?php echo $group['group_name']?> 
          </td>
       </tr>
       <tr>
