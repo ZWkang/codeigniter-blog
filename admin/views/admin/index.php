@@ -6,34 +6,14 @@
       <div class="warning">您还没有删除 install 文件夹，出于安全的考虑，我们建议您删除 install 文件夹。</div>
     
    <div id="douApi"></div>
-      <div class="indexBox">
-    <div class="boxTitle">单页面快速管理</div>
-    <ul class="ipage">
-      
-     <a href="page.php?rec=edit&id=1">公司简介</a> 
-      
-     <a href="page.php?rec=edit&id=2" class="child1">企业荣誉</a> 
-      
-     <a href="page.php?rec=edit&id=3" class="child1">发展历程</a> 
-      
-     <a href="page.php?rec=edit&id=4" class="child1">联系我们</a> 
-      
-     <a href="page.php?rec=edit&id=5">人才招聘</a> 
-      
-     <a href="page.php?rec=edit&id=6">营销网络</a> 
-          <div class="clear"></div>
-    </ul>
-   </div>
    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
     <tr>
-     <td width="65%" valign="top" class="pr">
+     <td width="30%" valign="top" class="pr">
       <div class="indexBox">
        <div class="boxTitle">网站基本信息</div>
        <ul>
         <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
          <tr>
-          <td width="120">单页面数：</td>
-          <td><strong>6</strong></td>
           <td width="100">文章总数：</td>
           <td><strong>10</strong></td>
          </tr>
@@ -72,25 +52,23 @@
        <ul>
         <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
          <tr>
-          <th width="45%">IP地址</th>
-          <th width="55%">操作时间</th>
+          <th width="5%">操作编号</th>
+          <th width="10%">操作用户</th>
+          <th width="20%">IP地址</th>
+          <th width="20%">操作时间</th>
+          <th width="15%">物理地址</th>
+          <th width="30%">操作记录</th>
          </tr>
-                  <tr>
-          <td align="center">127.0.0.1</td>
-          <td align="center">2016-02-25 23:29:08</td>
+         <?php foreach($records as $value){?>
+           <tr>
+          <td align="center"><?php echo $value['id'];?></td>
+          <td align="center"><?php echo $value['user'];?></td>
+          <td align="center"><?php echo $value['ip']?></td>
+          <td align="center"><?php echo date('Y-m-d H:i:s',$value['time'])?></td>
+          <td align="center"><?php echo $value['address'];?></td>
+          <td align="center"><?php echo $value['message'];?></td>
          </tr>
-                  <tr>
-          <td align="center">127.0.0.1</td>
-          <td align="center">2016-02-25 13:48:48</td>
-         </tr>
-                  <tr>
-          <td align="center">127.0.0.1</td>
-          <td align="center">2013-10-16 09:43:01</td>
-         </tr>
-                  <tr>
-          <td align="center">127.0.0.1</td>
-          <td align="center">2013-10-16 09:42:58</td>
-         </tr>
+         <?php } ?>
                  </table>
        </ul>
       </div>
@@ -103,19 +81,24 @@
      <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
       <tr>
        <td width="120" valign="top">PHP 版本：</td>
-       <td valign="top">5.3.29 </td>
+       <td valign="top"><?PHP echo PHP_VERSION; ?> </td>
        <td width="100" valign="top">MySQL 版本：</td>
        <td valign="top">5.5.40</td>
        <td width="100" valign="top">服务器操作系统：</td>
-       <td valign="top">WINNT(127.0.0.1)</td>
+       <td valign="top"><?PHP echo PHP_OS; ?></td>
+       <td valign="top">当前服务器IP地址：</td>
+       <td valign="top"><?php echo GetHostByName($_SERVER['SERVER_NAME'])?></td>
+
       </tr>
       <tr>
        <td valign="top">文件上传限制：</td>
-       <td valign="top">2M</td>
+       <td valign="top"><?php echo ini_get('upload_max_filesize');?></td>
        <td valign="top">GD 库支持：</td>
        <td valign="top">是</td>
        <td valign="top">Web 服务器：</td>
-       <td valign="top">Apache/2.4.10 (Win32) OpenSSL/0.9.8zb mod_fcgid/2.3.9</td>
+       <td valign="top"><?php echo $_SERVER['SERVER_SIGNATURE']?></td>
+       <td valign="top">Web 服务器系统目录：</td>
+       <td valign="top"><?php echo $_SERVER['SystemRoot'];?></td>
       </tr>
      </table>
     </ul>

@@ -2,6 +2,9 @@
 class ManagerAction extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
+		if(!in_array('2', $premission)){
+			error('无权访问文章管理');
+		}
 		$this->load->helper(array('form','url'));
 		$this->load->model(array('Manager_model','Group_model','Premission_model'));
 		$this->load->library('form_validation');

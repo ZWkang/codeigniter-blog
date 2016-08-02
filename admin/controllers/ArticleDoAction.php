@@ -2,6 +2,10 @@
 class ArticleDoAction extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
+		$premission=$this->session->userdata('premission');
+		if(!in_array('4', $premission)){
+			error('无权访问文章管理');
+		}
 		$this->load->helper('url');
 		$this->load->model('Article_model');
 		$this->load->helper('form');

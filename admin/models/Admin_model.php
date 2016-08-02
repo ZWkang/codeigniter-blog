@@ -25,6 +25,15 @@ class Admin_model extends CI_Model{
 	/**
 	 * admin表联合group表查
 	 */
+
+	/**
+	 * 后台登录记录
+	 */
+	public function insertRecord($data){
+		$this->db->insert('blog_record',$arr);
+		return $this->db->affected_rows();
+	}
+	
 }
 
 ?>

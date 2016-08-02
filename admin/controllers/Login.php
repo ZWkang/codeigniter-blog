@@ -4,7 +4,14 @@ class Login extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('captcha');
+		$this->load->model(array('Admin_model'=>'admin','Index_model'=>'index'));
+		$this->CheckStatus();
 		//载入辅助函数
+	}
+	public function CheckStatus(){
+		if(!empty($this->session->userdata('username'))){
+			redirect('IndexAction/index');
+		}
 	}
 	public function index_bak(){
 		
@@ -37,7 +44,7 @@ class Login extends CI_Controller{
 	}
 	public function index(){
 		// print_const();exit();
-		
+
 		$this->load->view('admin/login');
 	}
 	public function code(){
@@ -53,13 +60,16 @@ class Login extends CI_Controller{
 		$code = $this->input->post('code');
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+		$ipaddress = $this->input->post('ipaddress');
+		$cityname = $this->input->post('cityname');
+
 		if(!isset($_SESSION)){
 			session_start();
 		}
 		if(strtoupper($code)!=$_SESSION['code']){
 			error('验证码不正确');
 		}
-		$this->load->model('Admin_model','admin');
+		
 		$Userdata = $this->admin->check($username);
 		// print_r($Userdata);exit();
 		$passwd = md5($password);
@@ -71,8 +81,13 @@ class Login extends CI_Controller{
 		}
 		// echo $Userdata[0]['user_group'];exit();
 		$result = $this->admin->GetrGroup($Userdata[0]['user_group']);
-		print_r($result);exit();
-		$premission = explode(',', $Userdata[0]['premission']);
+		// print_r($result);exit();
+		$premission = explode(',', $result['group_pre']);
+				// print_r($premission);exit();
+		if(!in_array('1', $premission)){
+			error('无权访问后台');
+		}
+		//设置权限访问
 		$sessionData=array(
 			'username'=>$username,
 			'premission'=>$premission,
@@ -81,8 +96,14 @@ class Login extends CI_Controller{
 			);
 		$this->session->set_userdata($sessionData);
 		$data = $this->session->userdata();
-		print_r($data);exit();
-		redirect('LinksAction/index');
+		// print_r($data);exit();
+		$_arr = array('user'=>$username,'time'=>time(),'ip'=>$ipaddress,'message'=>'登录后台','address'=>$cityname);
+		$affect  = $this->index->insertRecord($_arr);
+		if($affect>0){
+			redirect('IndexAction/index');
+		}else{
+			error('用户信息有误');
+		}
 	}
 	/**
 	 * 退出登录

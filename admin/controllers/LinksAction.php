@@ -4,6 +4,10 @@ class LinksAction extends MY_Controller{
 	//初始化加载
 	function __construct(){
 		parent::__construct();
+		$premission=$this->session->userdata('premission');
+		if(!in_array('5', $premission)){
+			error('无权访问友情链接');
+		}
 		$this->load->helper('url');
 		$this->load->model('Links_model');
 		$this->load->helper('form');

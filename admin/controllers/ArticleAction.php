@@ -1,10 +1,14 @@
 <?php
 //文章分类操作
 // This is Article category
-class ArticleAction extends CI_Controller{
+class ArticleAction extends MY_Controller{
 	public $urls = 'ArticleAction/edit';
 	public function __construct(){
 		parent::__construct();
+		$premission=$this->session->userdata('premission');
+		if(!in_array('3', $premission)){
+			error('无权访问文章管理');
+		}
 		$this->load->helper('url');
 		$this->load->model('Article_category_model');
 		$this->load->helper('form');
@@ -18,24 +22,24 @@ class ArticleAction extends CI_Controller{
 		//后台设置后缀为空，否则分页出错
 		// $this->config->set_item('url_suffix', '');
 		//载入分页类
-		$this->load->library('pagination');
-		$perPage = 3;
-		//配置项设置
-		$config['base_url'] = site_url('admin/article/index');
-		$config['total_rows'] = $this->db->count_all_results('article');
-		$config['per_page'] = $perPage;
-		$config['uri_segment'] 
-		$config['last_link'] = '最后一页';= 4;
-		$config['first_link'] = '第一页';
-		$config['prev_link'] = '上一页';
-		$config['next_link'] = '下一页';
+		// $this->load->library('pagination');
+		// $perPage = 3;
+		// //配置项设置
+		// $config['base_url'] = site_url('admin/article/index');
+		// $config['total_rows'] = $this->db->count_all_results('article');
+		// $config['per_page'] = $perPage;
+		// $config['uri_segment'] =4;
+		// $config['last_link'] = '最后一页';
+		// $config['first_link'] = '第一页';
+		// $config['prev_link'] = '上一页';
+		// $config['next_link'] = '下一页';
 
-		$this->pagination->initialize($config);
+		// $this->pagination->initialize($config);
 
-		$data['links'] = $this->pagination->create_links();
-		print_r($data);exit();
-		$offset = $this->uri->segment(4);
-		$this->db->limit($perPage, $offset);
+		// $data['links'] = $this->pagination->create_links();
+		// print_r($data);exit();
+		// $offset = $this->uri->segment(4);
+		// $this->db->limit($perPage, $offset);
 
 		$data=$this->Article_category_model->GetArticle();
 		// print_r($data);
