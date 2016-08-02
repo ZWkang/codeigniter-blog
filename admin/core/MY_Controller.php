@@ -5,7 +5,7 @@ class MY_Controller extends CI_Controller{
 		$username=$this->session->userdata('username');
 		$uid = $this->session->userdata('uid');
 		if(!$username || !$uid){
-			redirect('login/index');
+			redirect('Login/index');
 		}
 	}
 }

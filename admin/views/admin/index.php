@@ -3,7 +3,7 @@
 <?php $this->load->view('template/sildebar');?>
  <div id="dcMain"> <!-- 当前位置 -->
 <div id="urHere">Kang BLOG后台  管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
-      <div class="warning">您还没有删除 install 文件夹，出于安全的考虑，我们建议您删除 install 文件夹。</div>
+      <div class="warning">只有后台的！！！</div>
     
    <div id="douApi"></div>
    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="indexBoxTwo">
@@ -16,6 +16,8 @@
          <tr>
           <td width="100">文章总数：</td>
           <td><strong>10</strong></td>
+                    <td>系统语言：</td>
+          <td><strong>zh_cn</strong></td>
          </tr>
          <tr>
           <td>商品总数：</td>
@@ -52,12 +54,12 @@
        <ul>
         <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
          <tr>
-          <th width="5%">操作编号</th>
+          <th width="10%">操作编号</th>
           <th width="10%">操作用户</th>
           <th width="20%">IP地址</th>
           <th width="20%">操作时间</th>
-          <th width="15%">物理地址</th>
-          <th width="30%">操作记录</th>
+          <th width="20%">物理地址</th>
+          <th width="20%">操作记录</th>
          </tr>
          <?php foreach($records as $value){?>
            <tr>
@@ -94,7 +96,7 @@
        <td valign="top">文件上传限制：</td>
        <td valign="top"><?php echo ini_get('upload_max_filesize');?></td>
        <td valign="top">GD 库支持：</td>
-       <td valign="top">是</td>
+       <td valign="top"><?php echo !function_exists('gd_info')?'不支持':'支持'?></td>
        <td valign="top">Web 服务器：</td>
        <td valign="top"><?php echo $_SERVER['SERVER_SIGNATURE']?></td>
        <td valign="top">Web 服务器系统目录：</td>

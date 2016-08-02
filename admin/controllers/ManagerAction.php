@@ -2,6 +2,7 @@
 class ManagerAction extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
+		$premission=$this->session->userdata('premission');
 		if(!in_array('2', $premission)){
 			error('无权访问文章管理');
 		}

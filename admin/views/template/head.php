@@ -28,7 +28,7 @@
       <a href="manager.php?rec=edit&id=1">编辑我的个人资料</a>
      </div>
     </li>
-    <li class="noRight"><a href="login.php?rec=logout">退出</a></li>
+    <li class="noRight"><a href="<?php echo site_url('Login/login_out')?>">退出</a></li>
    </ul>
   </div>
  </div>

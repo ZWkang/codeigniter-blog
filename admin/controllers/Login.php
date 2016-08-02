@@ -6,6 +6,7 @@ class Login extends CI_Controller{
 		$this->load->helper('captcha');
 		$this->load->model(array('Admin_model'=>'admin','Index_model'=>'index'));
 		$this->CheckStatus();
+		date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'
 		//载入辅助函数
 	}
 	public function CheckStatus(){
