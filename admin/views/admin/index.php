@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 <?php $this->load->view('template/head');?>
 <?php $this->load->view('template/sildebar');?>
+<?php $consts = get_defined_constants(TRUE);?>
  <div id="dcMain"> <!-- 当前位置 -->
 <div id="urHere">Kang BLOG后台  管理中心</div>  <div id="index" class="mainBox" style="padding-top:18px;height:auto!important;height:550px;min-height:550px;">
       <div class="warning">只有后台的！！！</div>
@@ -20,8 +21,8 @@
           <td><strong>zh_cn</strong></td>
          </tr>
          <tr>
-          <td>商品总数：</td>
-          <td><strong>15</strong></td>
+          <td>模板地址：</td>
+          <td><strong><?php echo $consts['user']['VIEWPATH'];?></strong></td>
           <td>系统语言：</td>
           <td><strong>zh_cn</strong></td>
          </tr>
@@ -33,16 +34,16 @@
           <td><strong>UTF-8</strong></td>
          </tr>
          <tr>
-          <td>站点地图：</td>
-          <td><strong>开启</strong></td>
+          <td>当前后台地址：</td>
+          <td><strong><?php echo $consts['user']['APPPATH'];?></strong></td>
           <td>站点模板：</td>
           <td><strong>default</strong></td>
          </tr>
          <tr>
-          <td>DouPHP版本：</td>
-          <td><strong>v1.3 Release 20160125</strong></td>
-          <td>安装日期：</td>
-          <td><strong>2016-02-25</strong></td>
+          <td>CI 版本：</td>
+          <td><strong>Version <?php echo $consts['user']['CI_VERSION'];?></strong></td>
+          <td>当前时间</td>
+          <td id="time"></td>
          </tr>
         </table>
        </ul>
@@ -135,5 +136,7 @@
     
   </div>
  </div>
-
+<script>
+  (function )
+</script>
 <?php $this->load->view('template/footer');?>

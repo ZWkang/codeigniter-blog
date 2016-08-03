@@ -856,7 +856,7 @@ if ( ! function_exists('function_usable'))
  */
 function print_const(){
 	$consts = get_defined_constants(TRUE);
-	print_r($consts['user']);
+	print_r($consts);
 }
 /**
  * 错误提示

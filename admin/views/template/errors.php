@@ -3,7 +3,9 @@
 <?php $this->load->view('template/sildebar');?>
 <?php $index_url = site_url($index);?>
 <?php ?>
-
+<!--
+	需要传递一个message   还有一个index一般是主页   还有要跳转的url$url   还有一个id如果有的话
+-->
 <?php $urls = site_url("$url").'/'.$id;
 echo $message!=''?
 	'<script>window.onload=function(){
