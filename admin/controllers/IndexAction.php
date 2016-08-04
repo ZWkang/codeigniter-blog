@@ -8,8 +8,10 @@ class IndexAction extends MY_Controller{
 		$this->load->library('form_validation');
 	}
 	public function index(){
-		print_const();exit();
-		$data['count_article'] = ();
+		// print_const();exit();
+		
+		// exit();
+		$data['count_article'] = $this->article->count_article();;
 		$data['records'] = $this->index->GetAllRecord();
 		$this->load->view('admin/index',$data);
 	}

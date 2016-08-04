@@ -6,7 +6,7 @@
 			$this->load->database();
 		}
 		public function GetAllRecord(){
-			$this->db->order_by('id');
+			$this->db->order_by('id','desc');
 			return $this->db->get($this->table)->result_array();
 		}
 		public function insertRecord($data){

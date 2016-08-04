@@ -16,7 +16,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
          <tr>
           <td width="100">文章总数：</td>
-          <td><strong>10</strong></td>
+          <td><strong><?php echo $count_article;?></strong></td>
                     <td>系统语言：</td>
           <td><strong>zh_cn</strong></td>
          </tr>
@@ -27,13 +27,6 @@
           <td><strong>zh_cn</strong></td>
          </tr>
          <tr>
-          <td>URL 重写：</td>
-          <td><strong>关闭<a href="system.php" class="cueRed ml">（点击开启）</a> 
-           </strong></td>
-          <td>编码：</td>
-          <td><strong>UTF-8</strong></td>
-         </tr>
-         <tr>
           <td>当前后台地址：</td>
           <td><strong><?php echo $consts['user']['APPPATH'];?></strong></td>
           <td>站点模板：</td>
@@ -42,8 +35,8 @@
          <tr>
           <td>CI 版本：</td>
           <td><strong>Version <?php echo $consts['user']['CI_VERSION'];?></strong></td>
-          <td>当前时间</td>
-          <td id="time"></td>
+          <td>当前IP：</td>
+          <td id="ipaddress"></td>
          </tr>
         </table>
        </ul>
@@ -112,15 +105,7 @@
      <table width="100%" border="0" cellspacing="0" cellpadding="7" class="tableBasic">
     <tr>
        <td width="120"> 个人git 模板： </td>
-       <td><a href="http://www.douco.com" target="_blank">http://www.github.com/ZWKang</a></td>
-      </tr>
-      <tr>
-       <td width="120"> DOU 模板： </td>
-       <td><a href="http://www.douco.com" target="_blank">http://www.douco.com</a></td>
-      </tr>
-      <tr>
-       <td> 开发者社区： </td>
-       <td><a href="http://bbs.douco.cn" target="_blank">http://bbs.douco.cn </a></td>
+       <td><a href="http://www.github.com/ZWKang" target="_blank">http://www.github.com/ZWKang</a></td>
       </tr>
       <tr>
        <td> 贡献者： </td>
@@ -128,7 +113,7 @@
       </tr>
       <tr>
        <td> 系统使用协议： </td>
-       <td><a href="http://www.douco.com/license.html" target="_blank">周文康主页。。暂留位置</a><em>（您可以免费使用这个博客（不限商用），但必须保留相关版权信息。）</em></td>
+       <td><a href="https://ls-l.cn" target="_blank">周文康主页。。暂留位置</a><em>（您可以免费使用这个博客（不限商用），但必须保留相关版权信息。）</em></td>
       </tr>
      </table>
     </ul>
@@ -136,7 +121,11 @@
     
   </div>
  </div>
+<script language="javascript" type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"> 
+</script>
 <script>
-  (function )
+        $(document).ready(function(){
+          $("#ipaddress").html(returnCitySN.cip);
+        })
 </script>
 <?php $this->load->view('template/footer');?>

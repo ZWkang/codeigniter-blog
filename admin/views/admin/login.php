@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('views/public/css/ch-ui.admin.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('views/public/font/css/font-awesome.min.css');?>">
 	<script src="<?php echo base_url('views/public/js/jquery.min.js');?>"></script>
-<script language="javascript" type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"> 
+	<script language="javascript" type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"> 
 </script> 
 
 </head>

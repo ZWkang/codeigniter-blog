@@ -12,7 +12,7 @@
 <body>
 <div id="dcWrap"> <div id="dcHead">
  <div id="head">
-  <div class="logo"><a href="index.html"><img src="images/dclogo.gif" alt="logo"></a></div>
+  <div class="logo"><a href="index.html"><img src="#" alt="logo"></a></div>
   <div class="nav">
    <ul>
     <li class="M"><a href="JavaScript:void(0);" class="topAdd">新建</a>

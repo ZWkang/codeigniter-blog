@@ -38,6 +38,9 @@ class Article_model extends CI_Model{
 		$this->db->delete($this->table);
 		return $this->db->affected_rows();
 	}
+	public function count_article(){
+		return $this->db->count_all($this->table);
+	}
 
 
 }
