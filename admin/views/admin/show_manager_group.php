@@ -7,33 +7,18 @@
 <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
         <h3><a href="<?php echo site_url('ManagerAction/index');?>" class="actionBtn">返回列表</a>网站管理员
         </h3>
-       
             <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
               <tr>
-            <td width="100" align="right">管理员编号</td>
+            <td width="100" align="right">权限组名称</td>
             <td>
-            <?php echo $manager['user_id']?>
            </td>
           </tr>
 
                 <tr>
-            <td width="100" align="right">管理员名称</td>
+            <td width="100" align="right">拥有权限</td>
             <td>
-           <?php echo $manager['user_name']?>
            </td>
           </tr>
-          <tr>
-           <td width="100" align="right">E-mail地址</td>
-           <td>
-              <?php echo $manager['user_email']?>
-           </td>
-          </tr>
-          <tr>
-         <td align="right">当前所属权限组</td>
-         <td title="<?php echo $group['group_content']?>">
-              <?php echo $group['group_name']?> 
-         </td>
-      </tr>
       <tr>
        <td></td>
        <td>

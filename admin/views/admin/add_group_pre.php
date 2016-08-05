@@ -10,16 +10,16 @@
         <form action="manager.php?rec=insert" method="post">
             <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
               <tr>
-            <td width="100" align="right">管理员编号</td>
+            <td width="100" align="right">权限组名称:</td>
             <td>
-            <?php echo $manager['user_id']?>
+                <input type="text" name="group_name" size="40" class="inpMain" value=""/>
            </td>
           </tr>
 
                 <tr>
-            <td width="100" align="right">管理员名称</td>
+            <td width="100" align="right">权限组权限选择：</td>
             <td>
-           <?php echo $manager['user_name']?>
+                <input type="text" name="group_premission[]" size="40" class="inpMain" value=""/>
            </td>
           </tr>
           <tr>

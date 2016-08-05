@@ -7,22 +7,22 @@
     <h3><a href="addmanager.html?rec=add" class="actionBtn">添加权限组</a>网站管理员</h3>
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
      <tr>
-      <th width="30" align="center">权限组编号</th>
-      <th align="left">权限组名称</th>
+      <th width="" align="center">权限组编号</th>
+      <th align="center">权限组名称</th>
       <th align="center">权限组说明</th>
       <th align="center">权限组权限标识</th>
       <th align="center">操作</th>
-      <th></th>
      </tr>
-
+      <?php foreach ($groups as $value){?>
       <tr>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-      <td align="center"><a href="manageraction.html?rec=edit&id=1">编辑</a> | <a href="manager.html?rec=del&id=1">删除</a></td>
+        <td align="center"><?php echo $value['gid'] ?></td>
+        <td align="center"><?php echo $value['group_name'] ?></td>
+        <td align="center"><?php echo $value['group_content'] ?></td>
+        <td align="center"><?php echo $value['group_pre'] ?></td>
+      <td align="center"><a href="<?php site_url('GroupPreAction/GroupEditShow/').'/'.$value['gid']?>">编辑</a> | <a href="<?php echo site_url('GroupPreAction/Del').'/'.$value['gid']?>">删除</a></td>
       
      </tr>
+     <?php } ?>
 
          </table>
                        </div>
