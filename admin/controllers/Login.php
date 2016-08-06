@@ -43,11 +43,17 @@ class Login extends CI_Controller{
 		$data['img'] = $cap['image'];
 		$this->load->view('admin/login',$data);
 	}
+	/**
+	 * 登录主页展示
+	 */
 	public function index(){
 		// print_const();exit();
 
 		$this->load->view('admin/login');
 	}
+	/**
+	 * 验证码
+	 */
 	public function code(){
 		$config = array(
 			'width' => 100,
@@ -57,6 +63,9 @@ class Login extends CI_Controller{
 		$this->load->library('code',$config);
 		$this->code->show();
 	}
+	/**
+	 * 登录执行
+	 */
 	public function login_in(){
 		$code = $this->input->post('code');
 		$username = $this->input->post('username');

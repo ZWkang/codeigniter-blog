@@ -4,6 +4,9 @@ class LinksAction extends MY_Controller{
 	//初始化加载
 	function __construct(){
 		parent::__construct();
+		/**
+		 * 每一个功能都加一个对应的标识id控制权限
+		 */
 		$premission=$this->session->userdata('premission');
 		if(!in_array('5', $premission)){
 			error('无权访问友情链接');
