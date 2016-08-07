@@ -19,7 +19,7 @@
 		 */
 		public function GroupEditShow($id){
 			$id=$id+0;
-
+			
 		}
 		/**
 		 * 权限组删除展示

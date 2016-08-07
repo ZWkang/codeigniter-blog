@@ -14,6 +14,21 @@ class Group_model extends CI_Model{
 		$this->db->where('gid',$group_id);
 		return $this->db->get($this->table)->row_array();
 	}
+	public function AddGroup($data){
+		$this->db->insert($this->table,$data);
+		return $this->db->affected_rows();
+	}
+	public function EditGroup($id,$data){
+		$this->db->where('gid',$id);
+		$this->db->update($this->table,$data);
+		return $this->db->affected_rows();
+	}
+	public function DelGroup($id){
+		$id=$id+0;
+		$this->db->where('gid',$id);
+		$this->db->delete($this->table);
+		return $this->db->affected_rows();
+	}
 }
 
 ?>

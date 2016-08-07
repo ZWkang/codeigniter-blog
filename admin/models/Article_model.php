@@ -6,7 +6,7 @@ class Article_model extends CI_Model{
 		$this->load->database(); 
 	}
 	public function index(){
-		
+		exit();
 	}
 	public function getTable($table='blog_article'){
 		$this->db->order_by('art_id','acs');
