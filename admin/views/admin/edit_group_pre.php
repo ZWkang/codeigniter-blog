@@ -24,11 +24,8 @@
           </tr>
          <td align="right">当前权限</td>
          <td>
-
-          <label for="checkbox"><input name="premission" type="checkbox" value="1">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="2">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="3">登录后台</label>
-          <label for="checkbox"><input name="premission" type="checkbox" value="4">登录后台</label>
+            
+            <label for=""></label>
           <br/>
 
          </td>
@@ -37,7 +34,7 @@
        <td></td>
        <td>
         <input type="hidden" name="token" value="5a58b748" />
-        <a type="submit" class="btn" value="返回"  href="<?php echo site_url('ManagerAction/index')?>">返回</a>
+        <a type="submit" class="btn" value="返回"  href="<?php echo site_url('GroupPreAction/index')?>">返回</a>
        </td>
       </tr>
      </table>
