@@ -5,13 +5,14 @@ class Login extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->helper('captcha');
 		$this->load->model(array('Admin_model'=>'admin','Index_model'=>'index'));
-		$this->CheckStatus();
+		
 		date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'
 		//载入辅助函数
 	}
 	public function CheckStatus(){
-		if(!empty($this->session->userdata('username'))){
+		if(empty($this->session->userdata('username'))){
 			redirect('IndexAction/index');
+			// exit();
 		}
 	}
 	public function index_bak(){
@@ -47,9 +48,10 @@ class Login extends CI_Controller{
 	 * 登录主页展示
 	 */
 	public function index(){
+		// $this->CheckStatus();
 		// print_const();exit();
 
-		$this->load->view('admin/login');
+			$this->load->view('admin/login');
 	}
 	/**
 	 * 验证码
@@ -119,7 +121,8 @@ class Login extends CI_Controller{
 	 * 退出登录
 	 */
 	public function login_out(){
-		$this->session->sess_destory();
+		// $this->session->sess_destory();
+		$this->session->sess_destroy();
 		redirect('login/index');
 	}
 }
