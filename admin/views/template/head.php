@@ -23,7 +23,7 @@
     <li class="noRight"><a href="module.html">DouPHP+</a></li>
    </ul>
    <ul class="navRight">
-    <li class="M noLeft"><a href="JavaScript:void(0);">您好，admin</a>
+    <li class="M noLeft"><a href="JavaScript:void(0);"><?php echo $this->session->userdata('user');?></a>
      <div class="drop mUser">
       <a href="manager.php?rec=edit&id=1">编辑我的个人资料</a>
      </div>

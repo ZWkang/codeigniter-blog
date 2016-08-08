@@ -285,7 +285,7 @@ class ArticleDoAction extends CI_Controller{
 	}
 	function errortips($mseeage,$url='ArticleDoAction/index',$id,$index='ArticleDoAction/index'){
 		$datass = array(
-			'message'=>array(0=>'添加成功',1=>'主页'),
+			'message'=>array(0=>'添加失败',1=>'主页'),
 			'url'=>'ArticleDoAction/index',
 			'id'=>'',
 			'index'=>'ArticleDoAction/index'

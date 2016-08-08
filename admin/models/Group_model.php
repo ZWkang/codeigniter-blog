@@ -44,11 +44,16 @@ class Group_model extends CI_Model{
 		$this->db->delete($this->table);
 		return $this->db->affected_rows();
 	}
-	//得到权限
+	//得到某用户的权限
 	public function getwithpression($arr){
 		$this->db->where_in('id',$arr);
 		$result = $this->db->get('blog_premission');
 		return $result->result_array();
+	}
+	//得到所有权限
+	public function GetAllPremission(){
+		$result = $this->db->get('blog_premission');
+		return $result ->result_array();
 	}
 }
 

@@ -87,8 +87,6 @@ class ManagerAction extends CI_Controller{
 	 */
 	public function EditDoManager($id){
     	$this->form_validation->set_rules('user_name', '用户名称', 'required',array('required'  => '必须用户栏目名称!'));
-    	$this->form_validation->set_rules('update_pass', '修改密码不为空', 'required',array('required'  => '必须输入密码!'));
-    	$this->form_validation->set_rules('user_pass', '用户密码', 'required',array('required'  => '必须输入密码!'));
     	$this->form_validation->set_rules('user_group', '所属权限组名称', 'required',array('required'  => '必须输入所属权限名称!'));  	
 		if($this->form_validation->run() == FALSE){
 			// exit();
@@ -97,20 +95,22 @@ class ManagerAction extends CI_Controller{
 			error(validation_errors());
 		} else {
 
-			if(empty($this->input->post('user_pass'))){
-				error('当前密码不为空');
-			}
-			if(empty($this->input->post('update_pass'))){
-				error('当前修改密码不为空');
-			}
+			// if(empty($this->input->post('user_pass'))){
+			// 	error('当前密码不为空');
+			// }
+			// if(empty($this->input->post('update_pass'))){
+			// 	error('当前修改密码不为空');
+			// }
 			if(empty($this->input->post('user_group'))){
 				error('当前权限组不为空');
 			}
 			if(empty($this->input->post('user_name'))){
 				error('当前用户名不为空');
 			}
-			if($this->input->post('user_pass')==$this->input->post('update_pass')){
-				error('两个密码不能相同');
+			if(!empty($this->input->post('user_pass'))&&!empty($this->input->post('update_pass'))){
+				if($this->input->post('user_pass')==$this->input->post('update_pass')){
+					error('两个密码不能相同');
+				}
 			}
 			$data['user_name'] = $this->input->post('user_name');
 			// echo empty($data['user_name']);exit();
