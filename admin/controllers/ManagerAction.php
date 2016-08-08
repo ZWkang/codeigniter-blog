@@ -153,7 +153,7 @@ class ManagerAction extends CI_Controller{
 				}
 				$data = array(
 					'user_name'=>$this->input->post('user_name'),
-					'user_pass'=>$this->input->post('user_pass'),
+					'user_pass'=>md5($this->input->post('user_pass')),
 					'user_group'=>$this->input->post('user_group'),
 					'user_email'=>$this->input->post('user_email'),
 					'user_addtime'=>time(),

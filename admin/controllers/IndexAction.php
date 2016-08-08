@@ -9,7 +9,7 @@ class IndexAction extends MY_Controller{
 	}
 	public function index(){
 		// print_const();exit();
-		
+		// print_r($this->session->userdata);
 		// exit();
 		$data['count_article'] = $this->article->count_article();;
 		$data['records'] = $this->index->GetAllRecord();
