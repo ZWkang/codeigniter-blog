@@ -55,6 +55,8 @@ class Group_model extends CI_Model{
 		$result = $this->db->get('blog_premission');
 		return $result ->result_array();
 	}
+	//得到对应用户组标识id
+	
 }
 
 ?>

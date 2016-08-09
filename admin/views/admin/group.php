@@ -19,7 +19,7 @@
         <td align="center"><?php echo $value['group_name']?></td>
         <td align="center"><?php echo $value['group_content']?></td>
         <td align="center"><?php echo $value['group_pre']?></td>
-      <td align="center"><a href="<?php echo site_url('GroupPreAction/GroupEditShow/').'/'.$value['gid']?>">编辑</a> | <a href="manager.html?rec=del&id=1">删除</a></td>
+      <td align="center"><a href="<?php echo site_url('GroupPreAction/GroupEditShow/').'/'.$value['gid']?>">编辑</a> | <a href="<?php echo site_url('GroupPreAction/GroupDel').'/'.$value['gid']?>">删除</a></td>
       
      </tr>
      <?php } ?>
