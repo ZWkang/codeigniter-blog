@@ -16,7 +16,7 @@
 <!-- </ul> -->
  <ul>
   <li><a href="<?php echo site_url('LinksAction/index');?>"><i class="Link"></i><em>友情链接管理</em></a></li>
-  <li><a href="Tag.html"><i class="Tag"></i><em>博客标签管理</em></a></li>
+  <!-- <li><a href="Tag.html"><i class="Tag"></i><em>博客标签管理</em></a></li> -->
 </ul>
 
    <ul class="bot">
@@ -24,8 +24,8 @@
   <!-- <li><a href="mobile.html"><i class="mobile"></i><em>手机版</em></a></li> -->
   <!-- <li><a href="theme.html"><i class="theme"></i><em>设置模板</em></a></li> -->
   <li><a href="<?php echo site_url('ManagerAction/index');?>"><i class="manager"></i><em>网站管理员</em></a></li>
-  <li><a href="premission.html"><i class="premission"></i><em>权限设定</em></a></li>
-  <li><a href="manager.php?rec=manager_log"><i class="managerLog"></i><em>操作记录</em></a></li>
+  <li><a href="<?php echo site_url('GroupPreAction/index')?>"><i class="premission"></i><em>权限组设定</em></a></li>
+  <li><a href="<?php echo site_url('IndexAction/index')?>"><i class="managerLog"></i><em>操作记录</em></a></li>
  </ul>
 
 </div></div>
